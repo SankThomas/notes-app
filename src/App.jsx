@@ -51,7 +51,7 @@ function NotesApp() {
 
     if (selectedTag) {
       filtered = filtered.filter(
-        (note) => note.tags && note.tags.includes(selectedTag)
+        (note) => note.tags && note.tags.includes(selectedTag),
       );
     }
 
@@ -61,7 +61,7 @@ function NotesApp() {
         (note) =>
           note.title?.toLowerCase().includes(query) ||
           note.content?.toLowerCase().includes(query) ||
-          note.tags?.some((tag) => tag.toLowerCase().includes(query))
+          note.tags?.some((tag) => tag.toLowerCase().includes(query)),
       );
     }
 
@@ -154,8 +154,8 @@ function NotesApp() {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600"></div>
       </div>
     );
   }
@@ -165,11 +165,11 @@ function NotesApp() {
   }
 
   return (
-    <div className="h-screen flex bg-gray-50">
+    <div className="flex h-screen bg-gray-50">
       {/* Mobile overlay */}
       {isMobile && !sidebarCollapsed && (
         <div
-          className="fixed inset-0 bg-black/50 z-40"
+          className="fixed inset-0 z-40 bg-black/50"
           onClick={() => setSidebarCollapsed(true)}
         />
       )}
@@ -178,12 +178,12 @@ function NotesApp() {
       <div
         className={`${
           isMobile
-            ? `fixed left-0 top-0 h-full z-50 transform transition-transform duration-300 ${
+            ? `fixed top-0 left-0 z-50 h-full transform transition-transform duration-300 ${
                 sidebarCollapsed ? "-translate-x-full" : "translate-x-0"
               }`
             : sidebarCollapsed
-            ? "w-16"
-            : "w-64"
+              ? "w-16"
+              : "w-64"
         }`}
       >
         <Sidebar
@@ -200,21 +200,21 @@ function NotesApp() {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col lg:flex-row min-w-0">
+      <div className="flex min-w-0 flex-1 flex-col lg:flex-row">
         {/* Notes list */}
         <div
           className={`${
             isMobile && sidebarCollapsed && selectedNote
               ? "hidden"
               : "flex flex-col"
-          } w-full lg:w-80 border-r border-gray-200 bg-white`}
+          } w-full border-r border-gray-200 bg-white lg:w-80`}
         >
           {/* Mobile header */}
           {isMobile && (
-            <div className="flex items-center gap-3 p-4 border-b border-gray-200">
+            <div className="flex items-center gap-3 border-b border-gray-200 p-4">
               <button
                 onClick={() => setSidebarCollapsed(false)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                className="rounded-lg p-2 transition-colors hover:bg-gray-100"
               >
                 <Menu size={20} className="text-white" />
               </button>
@@ -222,14 +222,14 @@ function NotesApp() {
                 {showArchived
                   ? "Archived Notes"
                   : selectedTag
-                  ? `#${selectedTag}`
-                  : "All Notes"}
+                    ? `#${selectedTag}`
+                    : "All Notes"}
               </h1>
             </div>
           )}
 
           {/* Search bar */}
-          <div className="p-4 border-b border-gray-200">
+          <div className="border-b border-gray-200 p-4">
             <SearchBar
               onSearch={setSearchQuery}
               placeholder={`Search ${showArchived ? "archived " : ""}notes...`}
@@ -238,15 +238,15 @@ function NotesApp() {
 
           {/* Header for desktop */}
           {!isMobile && (
-            <div className="p-4 border-b border-gray-200">
+            <div className="border-b border-gray-200 p-4">
               <h2 className="text-lg font-semibold text-gray-900">
                 {showArchived
                   ? "Archived Notes"
                   : selectedTag
-                  ? `#${selectedTag}`
-                  : "All Notes"}
+                    ? `#${selectedTag}`
+                    : "All Notes"}
               </h2>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="mt-1 text-sm text-gray-500">
                 {filteredNotes.length}{" "}
                 {filteredNotes.length === 1 ? "note" : "notes"}
               </p>
@@ -268,7 +268,7 @@ function NotesApp() {
           className={`${
             isMobile && (!sidebarCollapsed || !selectedNote)
               ? "hidden"
-              : "flex-1 flex"
+              : "flex flex-1"
           }`}
         >
           <NotesEditor

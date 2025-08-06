@@ -30,7 +30,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-50 rounded;
+  @apply rounded bg-gray-50;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -81,7 +81,7 @@ body {
 
 .ProseMirror p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
-  @apply text-gray-200 float-left h-0 pointer-events-none;
+  @apply pointer-events-none float-left h-0 text-gray-200;
 }
 
 .ProseMirror ul,
@@ -117,7 +117,7 @@ body {
 }
 
 .ProseMirror code {
-  @apply bg-gray-100 rounded py-0.5 px-1;
+  @apply rounded bg-gray-100 px-1 py-0.5;
   font-family: var(--font-mono);
   font-size: 0.875em;
 }
