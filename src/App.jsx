@@ -216,7 +216,7 @@ function NotesApp() {
                 onClick={() => setSidebarCollapsed(false)}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
               >
-                <Menu size={20} />
+                <Menu size={20} className="text-white" />
               </button>
               <h1 className="text-lg font-semibold">
                 {showArchived
