@@ -196,40 +196,38 @@ export function NotesEditor({
             <small className="hidden md:block">Delete</small>
           </button>
 
-          {showDeleteModal && (
-            <Modal
-              title="Delete note"
-              className="max-w-lg"
-              isOpen={showDeleteModal}
-              onClose={() => setShowDeleteModal(false)}
-            >
-              <p className="text-sm text-gray-800">
-                This will permanantly delete your note. Are you sure you want to
-                continue?
-              </p>
+          <Modal
+            title="Delete note"
+            className="max-w-lg"
+            isOpen={showDeleteModal}
+            onClose={() => setShowDeleteModal(false)}
+          >
+            <p className="text-sm text-gray-800">
+              This will permanantly delete your note. Are you sure you want to
+              continue?
+            </p>
 
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                <Button
-                  onClick={() => setShowDeleteModal(false)}
-                  variant="secondary"
-                  className="w-full"
-                >
-                  Sign Out
-                </Button>
+            <div className="grid grid-cols-2 gap-4 mt-6">
+              <Button
+                onClick={() => setShowDeleteModal(false)}
+                variant="secondary"
+                className="w-full"
+              >
+                Sign Out
+              </Button>
 
-                <Button
-                  onClick={() => {
-                    onDelete(note.id);
-                    setShowDeleteModal(false);
-                  }}
-                  variant="danger"
-                  className="w-full"
-                >
-                  Delete
-                </Button>
-              </div>
-            </Modal>
-          )}
+              <Button
+                onClick={() => {
+                  onDelete(note.id);
+                  setShowDeleteModal(false);
+                }}
+                variant="danger"
+                className="w-full"
+              >
+                Delete
+              </Button>
+            </div>
+          </Modal>
         </div>
       </div>
 
