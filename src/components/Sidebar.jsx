@@ -48,7 +48,7 @@ export function Sidebar({
           onClick={onToggleCollapse}
           className="p-2 hover:bg-gray-100 dark:hover:bg-gray-900 rounded-lg transition-colors mb-4"
         >
-          <Menu size={20} />
+          <Menu size={20} className="text-white" />
         </button>
 
         <button
