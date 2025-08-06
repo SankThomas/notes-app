@@ -241,7 +241,7 @@ export function NotesEditor({
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Note title..."
               className={cn(
-                "text-2xl font-bold border-none px-0 py-2 focus:ring-0",
+                "text-2xl font-bold border-none px-0 underline underline-offset-4 py-2 focus:ring-0",
                 errors.title && "border-red-500"
               )}
               error={errors.title}
