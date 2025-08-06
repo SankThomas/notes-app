@@ -108,12 +108,12 @@ export function NotesEditor({
 
   if (!note) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-gray-50">
+      <div className="flex flex-1 items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-200">
             <NotepadText />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
+          <h3 className="mb-2 text-lg font-medium text-gray-900">
             Select a note to edit
           </h3>
           <p className="text-gray-500">
@@ -125,23 +125,23 @@ export function NotesEditor({
   }
 
   return (
-    <div className="flex-1 flex flex-col bg-white">
+    <div className="flex flex-1 flex-col bg-white">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between p-4 border-b border-gray-200">
+      <div className="flex flex-wrap items-center justify-between border-b border-gray-200 p-4">
         <button
           onClick={onBack}
-          className="lg:hidden flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors focus-ring rounded-lg p-2"
+          className="focus-ring flex items-center gap-2 rounded-lg p-2 text-gray-600 transition-colors hover:text-gray-900 lg:hidden"
         >
           <ArrowLeft size={20} />
         </button>
 
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden items-center gap-4 lg:flex">
           <span className="text-sm text-gray-500">
             Last edited: {formatDate(note.updated_at)}
           </span>
           {hasChanges && (
-            <span className="text-sm text-amber-600 flex items-center gap-1">
-              <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+            <span className="flex items-center gap-1 text-sm text-amber-600">
+              <div className="h-2 w-2 rounded-full bg-amber-400"></div>
               Unsaved changes
             </span>
           )}
@@ -159,7 +159,7 @@ export function NotesEditor({
 
           <button
             onClick={handlePreview}
-            className="w-auto flex items-center gap-2 px-3 py-2 text-left hover:bg-gray-50 rounded transition-colors"
+            className="flex w-auto items-center gap-2 rounded px-3 py-2 text-left transition-colors hover:bg-gray-50"
           >
             <Eye size={16} />
             <small className="hidden md:block">Preview</small>
@@ -176,7 +176,7 @@ export function NotesEditor({
 
           <button
             onClick={handleArchive}
-            className="w-auto flex items-center gap-2 px-3 py-2 text-left hover:bg-gray-50 rounded transition-colors"
+            className="flex w-auto items-center gap-2 rounded px-3 py-2 text-left transition-colors hover:bg-gray-50"
           >
             {note.archived ? (
               <ArchiveRestore size={16} />
@@ -190,7 +190,7 @@ export function NotesEditor({
 
           <button
             onClick={handleDelete}
-            className="w-auto rounded flex items-center gap-2 px-3 py-2 text-left text-red-600 hover:bg-red-50 transition-colors"
+            className="flex w-auto items-center gap-2 rounded px-3 py-2 text-left text-red-600 transition-colors hover:bg-red-50"
           >
             <Trash2 size={16} />
             <small className="hidden md:block">Delete</small>
@@ -207,7 +207,7 @@ export function NotesEditor({
               continue?
             </p>
 
-            <div className="grid grid-cols-2 gap-4 mt-6">
+            <div className="mt-6 grid grid-cols-2 gap-4">
               <Button
                 onClick={() => setShowDeleteModal(false)}
                 variant="secondary"
@@ -233,7 +233,7 @@ export function NotesEditor({
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto p-6">
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="mx-auto max-w-4xl space-y-6">
           <div>
             <Input
               type="text"
@@ -241,13 +241,13 @@ export function NotesEditor({
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Note title..."
               className={cn(
-                "text-2xl font-bold border-none px-0 underline underline-offset-4 py-2 focus:ring-0",
-                errors.title && "border-red-500"
+                "border-none px-0 py-2 text-2xl font-bold underline underline-offset-4 focus:ring-0",
+                errors.title && "border-red-500",
               )}
               error={errors.title}
             />
             {errors.title && (
-              <p className="text-red-500 text-sm mt-1">{errors.title}</p>
+              <p className="mt-1 text-sm text-red-500">{errors.title}</p>
             )}
           </div>
 
@@ -266,7 +266,7 @@ export function NotesEditor({
               placeholder="Start writing your note..."
             />
             {errors.content && (
-              <p className="text-red-500 text-sm mt-1">{errors.content}</p>
+              <p className="mt-1 text-sm text-red-500">{errors.content}</p>
             )}
           </div>
         </div>

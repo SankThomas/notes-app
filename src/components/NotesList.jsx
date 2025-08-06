@@ -23,7 +23,7 @@ export function NotesList({
         </mark>
       ) : (
         part
-      )
+      ),
     );
   };
 
@@ -39,9 +39,9 @@ export function NotesList({
         <div className="space-y-3">
           {[...Array(5)].map((_, i) => (
             <div key={i} className="animate-pulse">
-              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-              <div className="h-3 bg-gray-200 rounded w-1/2 mb-2"></div>
-              <div className="h-3 bg-gray-200 rounded w-full"></div>
+              <div className="mb-2 h-4 w-3/4 rounded bg-gray-200"></div>
+              <div className="mb-2 h-3 w-1/2 rounded bg-gray-200"></div>
+              <div className="h-3 w-full rounded bg-gray-200"></div>
             </div>
           ))}
         </div>
@@ -51,12 +51,12 @@ export function NotesList({
 
   if (notes.length === 0) {
     return (
-      <div className="flex-1 flex items-center justify-center p-8">
+      <div className="flex flex-1 items-center justify-center p-8">
         <div className="text-center">
-          <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
             <NotepadText />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
+          <h3 className="mb-2 text-lg font-medium text-gray-900">
             No notes found
           </h3>
           <p className="text-gray-400">
@@ -71,36 +71,36 @@ export function NotesList({
 
   return (
     <div className="flex-1 overflow-hidden">
-      <div className="h-full overflow-y-auto p-4 space-y-3">
+      <div className="h-full space-y-3 overflow-y-auto p-4">
         {notes.map((note) => (
           <div
             key={note.id}
             onClick={() => onSelectNote(note)}
             className={cn(
-              "p-4 border border-gray-200 rounded-lg cursor-pointer transition-all duration-200",
+              "cursor-pointer rounded-lg border border-gray-200 p-4 transition-all duration-200",
               "hover:border-gray-300",
               selectedNote?.id === note.id
                 ? `border-${currentTheme.primary} bg-${currentTheme.primaryLight}`
-                : "bg-white"
+                : "bg-white",
             )}
           >
-            <div className="flex items-start justify-between mb-2">
-              <h3 className="font-medium text-gray-900 truncate flex-1">
+            <div className="mb-2 flex items-start justify-between">
+              <h3 className="flex-1 truncate font-medium text-gray-900">
                 {highlightText(note.title || "Untitled", searchQuery)}
               </h3>
               {note.archived && (
-                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full ml-2">
+                <span className="ml-2 rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-600">
                   Archived
                 </span>
               )}
             </div>
 
             {note.tags && note.tags.length > 0 && (
-              <div className="flex flex-wrap gap-1 mb-2">
+              <div className="mb-2 flex flex-wrap gap-1">
                 {note.tags.slice(0, 3).map((tag) => (
                   <span
                     key={tag}
-                    className={`text-xs px-2 py-1 bg-${currentTheme.accent} text-${currentTheme.primary} rounded-full`}
+                    className={`px-2 py-1 text-xs bg-${currentTheme.accent} text-${currentTheme.primary} rounded-full`}
                   >
                     {highlightText(tag, searchQuery)}
                   </span>
@@ -113,7 +113,7 @@ export function NotesList({
               </div>
             )}
 
-            <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+            <p className="mb-2 line-clamp-2 text-sm text-gray-600">
               {highlightText(getPreview(note.content || ""), searchQuery)}
             </p>
 

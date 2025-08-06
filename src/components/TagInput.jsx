@@ -40,16 +40,16 @@ export function TagInput({ tags = [], onChange, placeholder = "Add tags..." }) {
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center gap-2 p-3 border border-gray-200 rounded-lg",
-        "focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent",
-        "transition-all duration-200 min-h-[30px]"
+        "flex flex-wrap items-center gap-2 rounded-lg border border-gray-200 p-3",
+        "focus-within:border-transparent focus-within:ring-2 focus-within:ring-blue-500",
+        "min-h-[30px] transition-all duration-200",
       )}
       onClick={() => inputRef.current?.focus()}
     >
       {tags.map((tag) => (
         <span
           key={tag}
-          className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded-md"
+          className="inline-flex items-center gap-1 rounded-md bg-blue-100 px-2 py-1 text-sm text-blue-800"
         >
           {tag}
           <button
@@ -71,7 +71,7 @@ export function TagInput({ tags = [], onChange, placeholder = "Add tags..." }) {
         onFocus={() => setIsInputFocused(true)}
         onBlur={handleInputBlur}
         placeholder={tags.length === 0 ? placeholder : ""}
-        className="flex-1 min-w-[120px] outline-none text-sm placeholder:text-gray-500"
+        className="min-w-[120px] flex-1 text-sm outline-none placeholder:text-gray-500"
       />
     </div>
   );

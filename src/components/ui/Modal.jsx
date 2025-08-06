@@ -41,16 +41,16 @@ export function Modal({ isOpen, onClose, title, children, className }) {
       />
       <div
         className={cn(
-          "relative bg-white rounded-xl max-w-md w-full mx-4",
+          "relative mx-4 w-full max-w-md rounded-xl bg-white",
           "duration-200",
-          className
+          className,
         )}
       >
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between border-b p-6">
           <h2 className="text-lg font-semibold">{title}</h2>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-gray-100 rounded-lg transition-colors focus-ring"
+            className="focus-ring rounded-lg p-1 transition-colors hover:bg-gray-100"
           >
             <X size={20} />
           </button>

@@ -67,7 +67,7 @@ export function AuthForm() {
           });
         } else if (error.message.includes("Email not confirmed")) {
           setMessage(
-            "Please check your email and click the confirmation link before signing in."
+            "Please check your email and click the confirmation link before signing in.",
           );
         } else if (error.message.includes("User already registered")) {
           setErrors({
@@ -79,7 +79,7 @@ export function AuthForm() {
         }
       } else if (isSignUp) {
         setMessage(
-          "Account created successfully! Please check your email to confirm your account before signing in."
+          "Account created successfully! Please check your email to confirm your account before signing in.",
         );
         setIsSignUp(false);
         setPassword("");
@@ -101,12 +101,12 @@ export function AuthForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full">
-        <div className="bg-white rounded-2xl p-8 space-y-8">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4 py-12 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md">
+        <div className="space-y-8 rounded-2xl bg-white p-8">
           {/* Header */}
           <div className="text-center">
-            <div className="mx-auto h-16 w-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600">
               <span className="text-2xl">
                 <NotepadText />
               </span>
@@ -124,7 +124,7 @@ export function AuthForm() {
           <form className="space-y-6" onSubmit={handleSubmit}>
             {/* Success/Info Messages */}
             {message && (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="rounded-lg border border-green-200 bg-green-50 p-4">
                 <div className="flex">
                   <div className="flex-shrink-0">
                     <Mail className="h-5 w-5 text-green-400" />
@@ -138,11 +138,11 @@ export function AuthForm() {
 
             {/* Error Messages */}
             {errors.general && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="rounded-lg border border-red-200 bg-red-50 p-4">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <div className="w-5 h-5 rounded-full bg-red-400 flex items-center justify-center">
-                      <span className="text-white text-xs font-bold">!</span>
+                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red-400">
+                      <span className="text-xs font-bold text-white">!</span>
                     </div>
                   </div>
                   <div className="ml-3">
@@ -157,12 +157,12 @@ export function AuthForm() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="mb-2 block text-sm font-medium text-gray-700"
                 >
                   Email address
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <Mail className="h-5 w-5 text-gray-400" />
                   </div>
                   <Input
@@ -177,7 +177,7 @@ export function AuthForm() {
                   />
                 </div>
                 {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                  <p className="mt-1 text-sm text-red-500">{errors.email}</p>
                 )}
               </div>
 
@@ -185,12 +185,12 @@ export function AuthForm() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="mb-2 block text-sm font-medium text-gray-700"
                 >
                   Password
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <Lock className="h-5 w-5 text-gray-400" />
                   </div>
                   <Input
@@ -200,20 +200,20 @@ export function AuthForm() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                     error={errors.password}
-                    className="pl-10 pr-10"
+                    className="pr-10 pl-10"
                     disabled={loading}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none focus:text-gray-600"
+                    className="absolute top-1/2 right-3 -translate-y-1/2 transform text-gray-400 transition-colors hover:text-gray-600 focus:text-gray-600 focus:outline-none"
                     disabled={loading}
                   >
                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                  <p className="mt-1 text-sm text-red-500">{errors.password}</p>
                 )}
               </div>
 
@@ -222,12 +222,12 @@ export function AuthForm() {
                 <div>
                   <label
                     htmlFor="confirmPassword"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="mb-2 block text-sm font-medium text-gray-700"
                   >
                     Confirm Password
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                       <Lock className="h-5 w-5 text-gray-400" />
                     </div>
                     <Input
@@ -237,7 +237,7 @@ export function AuthForm() {
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="Confirm your password"
                       error={errors.confirmPassword}
-                      className="pl-10 pr-10"
+                      className="pr-10 pl-10"
                       disabled={loading}
                     />
                     <button
@@ -245,7 +245,7 @@ export function AuthForm() {
                       onClick={() =>
                         setShowConfirmPassword(!showConfirmPassword)
                       }
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none focus:text-gray-600"
+                      className="absolute top-1/2 right-3 -translate-y-1/2 transform text-gray-400 transition-colors hover:text-gray-600 focus:text-gray-600 focus:outline-none"
                       disabled={loading}
                     >
                       {showConfirmPassword ? (
@@ -256,7 +256,7 @@ export function AuthForm() {
                     </button>
                   </div>
                   {errors.confirmPassword && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="mt-1 text-sm text-red-500">
                       {errors.confirmPassword}
                     </p>
                   )}
@@ -269,11 +269,11 @@ export function AuthForm() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:scale-[1.02] disabled:transform-none disabled:opacity-50"
+                className="flex w-full transform items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-3 font-medium text-white transition-all duration-200 hover:scale-[1.02] hover:from-blue-700 hover:to-purple-700 focus:scale-[1.02] disabled:transform-none disabled:opacity-50"
               >
                 {loading ? (
                   <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    <div className="h-4 w-4 animate-spin rounded-full border-b-2 border-white"></div>
                     {isSignUp ? "Creating Account..." : "Signing In..."}
                   </>
                 ) : (
@@ -291,7 +291,7 @@ export function AuthForm() {
                 type="button"
                 onClick={toggleMode}
                 disabled={loading}
-                className="text-blue-600 hover:text-blue-500 text-sm font-medium transition-colors focus:outline-none focus:underline disabled:opacity-50"
+                className="text-sm font-medium text-blue-600 transition-colors hover:text-blue-500 focus:underline focus:outline-none disabled:opacity-50"
               >
                 {isSignUp
                   ? "Already have an account? Sign in"
@@ -302,7 +302,7 @@ export function AuthForm() {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-8">
+        <div className="mt-8 text-center">
           <p className="text-xs text-gray-500">
             By continuing, you agree to our terms of service and privacy policy.
           </p>

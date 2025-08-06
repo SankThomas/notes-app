@@ -27,11 +27,11 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-ring",
-        "disabled:opacity-50 disabled:cursor-not-allowed",
+        "focus-ring inline-flex items-center justify-center rounded-lg font-medium transition-colors",
+        "disabled:cursor-not-allowed disabled:opacity-50",
         variants[variant],
         sizes[size],
-        className
+        className,
       )}
       disabled={disabled}
       {...props}

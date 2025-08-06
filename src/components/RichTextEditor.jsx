@@ -54,10 +54,10 @@ export function RichTextEditor({
       type="button"
       onClick={onClick}
       title={title}
-      className={`p-2 rounded-md transition-colors focus-ring ${
+      className={`focus-ring rounded-md p-2 transition-colors ${
         isActive
           ? "bg-blue-100 text-blue-700"
-          : "hover:bg-gray-100 text-gray-600"
+          : "text-gray-600 hover:bg-gray-100"
       }`}
     >
       {children}
@@ -65,8 +65,8 @@ export function RichTextEditor({
   );
 
   return (
-    <div className="border border-gray-200 rounded-lg">
-      <div className="flex items-center gap-1 p-2 border-b bg-gray-50 rounded-t-lg overflow-x-auto">
+    <div className="rounded-lg border border-gray-200">
+      <div className="flex items-center gap-1 overflow-x-auto rounded-t-lg border-b bg-gray-50 p-2">
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleBold().run()}
           isActive={editor.isActive("bold")}
@@ -83,7 +83,7 @@ export function RichTextEditor({
           <Italic size={16} />
         </ToolbarButton>
 
-        <div className="w-px h-6 bg-gray-300 mx-1" />
+        <div className="mx-1 h-6 w-px bg-gray-300" />
 
         <ToolbarButton
           onClick={() =>
@@ -115,7 +115,7 @@ export function RichTextEditor({
           <Heading3 size={16} />
         </ToolbarButton>
 
-        <div className="w-px h-6 bg-gray-300 mx-1" />
+        <div className="mx-1 h-6 w-px bg-gray-300" />
 
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleBulletList().run()}
@@ -141,7 +141,7 @@ export function RichTextEditor({
           <Quote size={16} />
         </ToolbarButton>
 
-        <div className="w-px h-6 bg-gray-300 mx-1" />
+        <div className="mx-1 h-6 w-px bg-gray-300" />
 
         <ToolbarButton
           onClick={() => editor.chain().focus().undo().run()}

@@ -43,17 +43,17 @@ export function Sidebar({
 
   if (isCollapsed) {
     return (
-      <div className="w-16 h-full bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 flex flex-col items-center py-4">
+      <div className="flex h-full w-16 flex-col items-center border-r border-gray-200 bg-white py-4 dark:border-gray-800 dark:bg-gray-950">
         <button
           onClick={onToggleCollapse}
-          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-900 rounded-lg transition-colors mb-4"
+          className="mb-4 rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-900"
         >
           <Menu size={20} className="text-white" />
         </button>
 
         <button
           onClick={onCreateNote}
-          className={`p-2 bg-${currentTheme.primary} text-white  rounded-lg hover:bg-${currentTheme.primaryHover} transition-colors mb-4`}
+          className={`p-2 bg-${currentTheme.primary} rounded-lg text-white hover:bg-${currentTheme.primaryHover} mb-4 transition-colors`}
           title="Create New Note"
         >
           <PlusCircle size={20} />
@@ -64,10 +64,10 @@ export function Sidebar({
             key={item.label}
             onClick={item.onClick}
             className={cn(
-              "p-2 rounded-lg transition-colors mb-2",
+              "mb-2 rounded-lg p-2 transition-colors",
               item.isActive
                 ? `bg-${currentTheme.primaryLight} text-${currentTheme.primary}`
-                : "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 dark:hover:text-gray-400"
+                : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-400",
             )}
             title={item.label}
           >
@@ -79,20 +79,20 @@ export function Sidebar({
   }
 
   return (
-    <div className="w-64 h-full bg-white dark:bg-gray-950 dark:border-gray-800 border-r border-gray-200 flex flex-col">
-      <div className="p-4 border-b border-gray-200 dark:border-gray-800 ">
-        <div className="flex items-center justify-between mb-4">
+    <div className="flex h-full w-64 flex-col border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
+      <div className="border-b border-gray-200 p-4 dark:border-gray-800">
+        <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
               <NotepadText size={18} className="text-white" />
             </div>
-            <h1 className="text-xl font-bold dark:text-white text-gray-950">
+            <h1 className="text-xl font-bold text-gray-950 dark:text-white">
               Notes
             </h1>
           </div>
           <button
             onClick={onToggleCollapse}
-            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors lg:hidden"
+            className="rounded-lg p-1 transition-colors hover:bg-gray-100 lg:hidden dark:hover:bg-gray-800"
           >
             <X size={16} />
           </button>
@@ -100,7 +100,7 @@ export function Sidebar({
 
         <button
           onClick={onCreateNote}
-          className={`w-full flex items-center gap-2 px-4 py-2 bg-${currentTheme.primary} text-white rounded-lg hover:bg-${currentTheme.primaryHover} transition-colors focus-ring`}
+          className={`flex w-full items-center gap-2 px-4 py-2 bg-${currentTheme.primary} rounded-lg text-white hover:bg-${currentTheme.primaryHover} focus-ring transition-colors`}
         >
           <PlusCircle size={18} />
           Create New Note
@@ -108,16 +108,16 @@ export function Sidebar({
       </div>
 
       <nav className="flex-1 p-4">
-        <div className="space-y-2 mb-6">
+        <div className="mb-6 space-y-2">
           {menuItems.map((item) => (
             <button
               key={item.label}
               onClick={item.onClick}
               className={cn(
-                "w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-left focus-ring",
+                "focus-ring flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left transition-colors",
                 item.isActive
                   ? `bg-${currentTheme.primaryLight} text-${currentTheme.primary}`
-                  : "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-400"
+                  : "text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800",
               )}
             >
               <item.icon size={18} />
@@ -129,7 +129,7 @@ export function Sidebar({
         <div>
           <button
             onClick={() => setIsTagsExpanded(!isTagsExpanded)}
-            className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-gray-500 dark:hover:text-gray-400 hover:text-gray-700 transition-colors"
+            className="flex w-full items-center justify-between px-3 py-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-700 dark:hover:text-gray-400"
           >
             <span className="flex items-center gap-2">
               <Tag size={16} />
@@ -138,7 +138,7 @@ export function Sidebar({
             <span
               className={cn(
                 "transform transition-transform",
-                isTagsExpanded ? "rotate-90" : "rotate-0"
+                isTagsExpanded ? "rotate-90" : "rotate-0",
               )}
             >
               <ChevronRight />
@@ -146,19 +146,19 @@ export function Sidebar({
           </button>
 
           {isTagsExpanded && (
-            <div className="mt-2 space-y-1 ml-4">
+            <div className="mt-2 ml-4 space-y-1">
               {tags.length === 0 ? (
-                <p className="text-sm text-gray-400 px-3 py-1">No tags yet</p>
+                <p className="px-3 py-1 text-sm text-gray-400">No tags yet</p>
               ) : (
                 tags.map((tag) => (
                   <button
                     key={tag}
                     onClick={() => onTagSelect(tag)}
                     className={cn(
-                      "w-full text-left px-3 py-1 text-sm rounded-md transition-colors focus-ring",
+                      "focus-ring w-full rounded-md px-3 py-1 text-left text-sm transition-colors",
                       selectedTag === tag
                         ? `bg-${currentTheme.primaryLight} text-${currentTheme.primary}`
-                        : "hover:bg-gray-100 text-gray-600 dark:hover:bg-gray-800 dark:text-gray-400"
+                        : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800",
                     )}
                   >
                     #{tag}
@@ -170,10 +170,10 @@ export function Sidebar({
         </div>
       </nav>
 
-      <div className="p-4 border-t border-gray-200 dark:border-gray-800">
+      <div className="border-t border-gray-200 p-4 dark:border-gray-800">
         <button
           onClick={onOpenSettings}
-          className="w-full flex items-center gap-3 px-3 py-2 text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100 rounded-lg transition-colors focus-ring"
+          className="focus-ring flex w-full items-center gap-3 rounded-lg px-3 py-2 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
         >
           <Settings size={18} />
           Settings

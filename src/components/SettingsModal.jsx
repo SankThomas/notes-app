@@ -29,7 +29,7 @@ export function SettingsModal({ isOpen, onClose }) {
       <div className="space-y-6">
         {/* Color Theme */}
         <div>
-          <h3 className="text-sm font-medium text-gray-700 mb-3">
+          <h3 className="mb-3 text-sm font-medium text-gray-700">
             Color Theme
           </h3>
           <div className="grid grid-cols-2 gap-3">
@@ -37,13 +37,13 @@ export function SettingsModal({ isOpen, onClose }) {
               <button
                 key={key}
                 onClick={() => updateColorTheme(key)}
-                className={`flex items-center gap-3 p-3 border rounded-lg transition-colors ${
+                className={`flex items-center gap-3 rounded-lg border p-3 transition-colors ${
                   colorTheme === key
                     ? "border-blue-500 bg-blue-50"
                     : "border-gray-200 hover:border-gray-300"
                 }`}
               >
-                <div className={`w-4 h-4 rounded-full bg-${theme.primary}`} />
+                <div className={`h-4 w-4 rounded-full bg-${theme.primary}`} />
                 <span className="text-sm font-medium capitalize">{key}</span>
               </button>
             ))}
@@ -52,13 +52,13 @@ export function SettingsModal({ isOpen, onClose }) {
 
         {/* Font Theme */}
         <div>
-          <h3 className="text-sm font-medium text-gray-700 mb-3">Font</h3>
+          <h3 className="mb-3 text-sm font-medium text-gray-700">Font</h3>
           <div className="space-y-2">
             {Object.entries(fonts).map(([key, font]) => (
               <button
                 key={key}
                 onClick={() => updateFontTheme(key)}
-                className={`w-full flex items-center justify-between p-3 border rounded-lg transition-colors cursor-pointer ${
+                className={`flex w-full cursor-pointer items-center justify-between rounded-lg border p-3 transition-colors ${
                   fontTheme === key
                     ? "border-blue-500 bg-blue-50"
                     : "border-gray-200 hover:border-gray-300"
@@ -66,7 +66,7 @@ export function SettingsModal({ isOpen, onClose }) {
               >
                 <span className={`text-sm ${font.class}`}>{font.name}</span>
                 {fontTheme === key && (
-                  <div className="w-2 h-2 bg-blue-500 rounded-full" />
+                  <div className="h-2 w-2 rounded-full bg-blue-500" />
                 )}
               </button>
             ))}
@@ -74,7 +74,7 @@ export function SettingsModal({ isOpen, onClose }) {
         </div>
 
         {/* Account */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="border-t border-gray-200 pt-4">
           <Button
             onClick={handleSignOut}
             variant="secondary"
