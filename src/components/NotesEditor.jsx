@@ -8,6 +8,7 @@ import {
   NotepadText,
 } from "lucide-react";
 import { RichTextEditor } from "./RichTextEditor";
+import { NoteViewer } from "./NoteViewer";
 import { TagInput } from "./TagInput";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
@@ -15,6 +16,7 @@ import { formatDate } from "../lib/utils";
 import { cn } from "../lib/utils";
 import { useCallback } from "react";
 import { Modal } from "./ui/Modal";
+import { Eye } from "lucide-react";
 
 export function NotesEditor({
   note,
@@ -29,6 +31,7 @@ export function NotesEditor({
   const [tags, setTags] = useState([]);
   const [hasChanges, setHasChanges] = useState(false);
   const [errors, setErrors] = useState({});
+  const [showPreview, setShowPreview] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
@@ -88,6 +91,10 @@ export function NotesEditor({
     setShowDeleteModal(true);
   };
 
+  const handlePreview = () => {
+    setShowPreview(true);
+  };
+
   // Auto-save functionality
   useEffect(() => {
     if (hasChanges && note && title.trim() && content.trim()) {
@@ -126,7 +133,6 @@ export function NotesEditor({
           className="lg:hidden flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors focus-ring rounded-lg p-2"
         >
           <ArrowLeft size={20} />
-          Back
         </button>
 
         <div className="hidden lg:flex items-center gap-4">
@@ -148,8 +154,25 @@ export function NotesEditor({
             className="flex items-center gap-2"
           >
             <Save size={16} />
-            Save
+            <small className="hidden md:block">Save</small>
           </Button>
+
+          <button
+            onClick={handlePreview}
+            className="w-auto flex items-center gap-2 px-3 py-2 text-left hover:bg-gray-50 rounded transition-colors"
+          >
+            <Eye size={16} />
+            <small className="hidden md:block">Preview</small>
+          </button>
+
+          <Modal
+            title="Note preview"
+            className="max-w-4xl"
+            isOpen={showPreview}
+            onClose={() => setShowPreview(false)}
+          >
+            <NoteViewer note={note} />
+          </Modal>
 
           <button
             onClick={handleArchive}
@@ -160,7 +183,9 @@ export function NotesEditor({
             ) : (
               <Archive size={16} />
             )}
-            {note.archived ? "Restore" : "Archive"}
+            <small className="hidden md:block">
+              {note.archived ? "Restore" : "Archive"}
+            </small>
           </button>
 
           <button
@@ -168,7 +193,7 @@ export function NotesEditor({
             className="w-auto rounded flex items-center gap-2 px-3 py-2 text-left text-red-600 hover:bg-red-50 transition-colors"
           >
             <Trash2 size={16} />
-            Delete
+            <small className="hidden md:block">Delete</small>
           </button>
 
           {showDeleteModal && (
